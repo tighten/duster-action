@@ -1,0 +1,8 @@
+name: Tighten Duster
+description: Automatically apply Tighten's default code style for Laravel apps.
+branding:
+  icon: 'plus'
+  color: 'yellow'
+runs:
+  using: docker
+  image: Dockerfile
