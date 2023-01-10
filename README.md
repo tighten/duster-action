@@ -1,3 +1,4 @@
+![Project Banner](https://raw.githubusercontent.com/tighten/duster/main/banner.png)
 # GitHub Action for Tighten Duster
 
 GitHub Action for the [Tighten Duster](https://github.com/tighten/duster) package.
