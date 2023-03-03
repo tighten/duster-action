@@ -22,7 +22,7 @@ jobs:
       - name: "duster"
         uses: tighten/duster-action@v1
         with:
-          args: --lint
+          args: lint
 ```
 
 To use additional Duster options use `args`:
@@ -42,7 +42,7 @@ jobs:
       - name: "duster"
         uses: tighten/duster-action@v1
         with:
-          args: --lint --using=tlint,pint
+          args: lint --using=tlint,pint
 ```
 
 If you would like to automatically commit any required fixes you can add the [Git Auto Commit Action](https://github.com/marketplace/actions/git-auto-commit) by [Stefan Zweifel](https://github.com/stefanzweifel).
@@ -68,7 +68,7 @@ jobs:
       - name: "duster"
         uses: tighten/duster-action@v1
         with:
-          args: --fix
+          args: fix
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
