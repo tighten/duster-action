@@ -124,6 +124,7 @@ jobs:
           commit_user_email: actions@github.com
 
       - name: Ignore Duster commit in git blame
+        if: steps.auto_commit_action.outputs.changes_detected == 'true'
         run: echo ${{ steps.auto_commit_action.outputs.commit_hash }} >> .git-blame-ignore-revs
 
       - uses: stefanzweifel/git-auto-commit-action@v4
