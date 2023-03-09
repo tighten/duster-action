@@ -28,6 +28,8 @@ jobs:
           args: lint
 ```
 
+---
+
 To use additional Duster options use `args`:
 
 ```yml
@@ -50,6 +52,8 @@ jobs:
         with:
           args: lint --using=tlint,pint
 ```
+
+---
 
 If you would like to automatically commit any required fixes you can add the [Git Auto Commit Action](https://github.com/marketplace/actions/git-auto-commit) by [Stefan Zweifel](https://github.com/stefanzweifel).
 
@@ -86,7 +90,24 @@ jobs:
           commit_user_email: actions@github.com
 ```
 
+>**Note** The resulting commit **will not trigger** another GitHub Actions Workflow run.
+>This is due to [limitations set by GitHub](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#using-the-github_token-in-a-workflow).
+
+To get around this you can indicate a workflow should run after "Duster Fix" using the `workflow_run` option.
+
+```yml
+on:
+    workflow_run:
+        workflows: ["Duster Fix"]
+        types:
+          - completed
+```
+
+The name "Duster Fix" must match the name defined in your Duster workflow and [must be on the default branch](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#workflow_run).
+
 Be sure to check out the [action's documentation](https://github.com/marketplace/actions/git-auto-commit) for limitations and options.
+
+---
 
 To automatically ignore these commits from GitHub's git blame you can add the commit's hash to a `.git-blame-ignore-revs` file.
 
