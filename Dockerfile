@@ -1,6 +1,6 @@
 FROM composer:latest
 
-RUN composer global require tightenco/duster --no-progress --dev
+RUN composer global require tightenco/duster ^2.0 --no-progress --dev
 ENV PATH="/tmp/vendor/bin:${PATH}"
 
 COPY "entrypoint.sh" "/entrypoint.sh"

@@ -3,6 +3,8 @@
 
 GitHub Action for the [Tighten Duster](https://github.com/tighten/duster) package.
 
+If your project requires PHP 8.0 use `tighten/duster-action@v1` which pulls in Duster `1.x`.
+
 ## Usage
 
 Use with [GitHub Actions](https://github.com/features/actions)
@@ -23,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: "duster"
-        uses: tighten/duster-action@v1
+        uses: tighten/duster-action@v2
         with:
           args: lint
 ```
@@ -48,7 +50,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: "duster"
-        uses: tighten/duster-action@v1
+        uses: tighten/duster-action@v2
         with:
           args: lint --using=tlint,pint
 ```
@@ -79,7 +81,7 @@ jobs:
           ref: ${{ github.head_ref }}
 
       - name: "duster"
-        uses: tighten/duster-action@v1
+        uses: tighten/duster-action@v2
         with:
           args: fix
 
@@ -133,7 +135,7 @@ jobs:
           ref: ${{ github.head_ref }}
 
       - name: "Duster Fix"
-        uses: tighten/duster-action@v1
+        uses: tighten/duster-action@v2
         with:
           args: fix
 
