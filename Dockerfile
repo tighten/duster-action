@@ -1,7 +1,8 @@
-FROM composer:latest
+FROM php:8.2-alpine
 
-RUN composer global require tightenco/duster ^2.0 --no-progress --dev
-ENV PATH="/tmp/vendor/bin:${PATH}"
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && php composer-setup.php
+RUN ./composer.phar require tightenco/duster ^2.0 --no-progress --dev
+ENV PATH="/vendor/bin:${PATH}"
 
 COPY "entrypoint.sh" "/entrypoint.sh"
 RUN chmod +x /entrypoint.sh
