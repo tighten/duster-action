@@ -3,7 +3,11 @@
 
 GitHub Action for the [Tighten Duster](https://github.com/tighten/duster) package.
 
+If your project requires PHP 8.1 use `tighten/duster-action@v3` which pulls in Duster `2.x`.
 If your project requires PHP 8.0 use `tighten/duster-action@v1` which pulls in Duster `1.x`.
+
+Note: This action will not be able to find any additional scripts configured (`duster.json`) to run with Duster.
+You will have to install your dependencies and run Duster from there instead of this action.
 
 ## Usage
 
@@ -23,9 +27,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: "duster"
-        uses: tighten/duster-action@v2
+        uses: tighten/duster-action@v3
         with:
           args: lint
 ```
@@ -48,9 +52,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: "duster"
-        uses: tighten/duster-action@v2
+        uses: tighten/duster-action@v3
         with:
           args: lint --using=tlint,pint
 ```
@@ -76,12 +80,12 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
 
       - name: "duster"
-        uses: tighten/duster-action@v2
+        uses: tighten/duster-action@v3
         with:
           args: fix
 
@@ -130,12 +134,12 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
 
       - name: "Duster Fix"
-        uses: tighten/duster-action@v2
+        uses: tighten/duster-action@v3
         with:
           args: fix
 
