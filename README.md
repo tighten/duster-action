@@ -6,8 +6,11 @@ GitHub Action for the [Tighten Duster](https://github.com/tighten/duster) packag
 If your project requires PHP 8.1 use `tighten/duster-action@v3` which pulls in Duster `2.x`.
 If your project requires PHP 8.0 use `tighten/duster-action@v1` which pulls in Duster `1.x`.
 
-Note: This action will not be able to find any additional scripts configured (`duster.json`) to run with Duster.
-You will have to install your dependencies and run Duster from there instead of this action.
+This action will not be able to find any additional scripts configured (`duster.json`) to run with Duster. You will have to install your dependencies and run Duster from there instead of using this action.
+
+> [!NOTE]
+> This action will **always** use the latest version of Duster.
+> If you run into situation where Duster passes locally but the action fails you should first try updating Duster locally.
 
 ## Usage
 
