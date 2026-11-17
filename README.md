@@ -1,6 +1,51 @@
 ![Project Banner](https://raw.githubusercontent.com/tighten/duster/main/banner.png)
 # GitHub Action for Tighten Duster
 
+> [!WARNING]
+> **This action is deprecated and will no longer be maintained.**
+> It always installs the newest Duster release in its major version, so CI ignores your `composer.lock` and can report different results than running Duster locally. It also cannot run custom scripts from `duster.json`.
+>
+> Install your project's dependencies and run Duster from `vendor/bin` instead, so CI uses the version locked in `composer.lock`. Starting with the next Duster release after v3.4.7, `./vendor/bin/duster github-actions` publishes this workflow for you.
+
+```yml
+# .github/workflows/duster-lint.yml
+name: Duster Lint
+
+on:
+    push:
+        branches: [ main ]
+    pull_request:
+
+jobs:
+  duster:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.5'
+          tools: composer:v2
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Duster Lint
+        run: ./vendor/bin/duster lint
+```
+
+Set `php-version` to the version your project uses, and add any auth steps your private Composer packages need before `composer install`.
+
+The rest of this README documents the deprecated action.
+
+---
+
 GitHub Action for the [Tighten Duster](https://github.com/tighten/duster) package.
 
 If your project requires PHP 8.1 use `tighten/duster-action@v3` which pulls in Duster `2.x`.
